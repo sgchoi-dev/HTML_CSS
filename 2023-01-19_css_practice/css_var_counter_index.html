@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .char {--color: red; color: blue; font-weight: bold;}
+    .char:after{
+      content: attr(data-char);
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(100%);
+      transition:0.3s;
+      transition-delay:calc(20ms + (30ms * var(--char-index)));
+      color: var(--color);
+      border: 1px solid red;
+    }
+
+    body {
+      counter-reset: section;                       /* counter 이름을 'section'으로 지정합니다.
+                                                      초깃값은 0입니다. */
+    }
+
+
+
+
+
+    .text_wrap {width: 200px; height: 200px; border: 1px solid black; word-break: break-all;}
+
+    h3 {color: black;}
+
+    h3::before {
+      counter-increment: section;                   /* section의 카운터 값을 1씩 증가시킵니다. */
+      content: counter(section) ": ";    /* section의 카운터 값을 표시합니다. */
+    }
+  </style>
+</head>
+<body>
+  <span class="char" data-char="e" style="--char-index:5;">e</span>
+
+
+  <div class="text_wrap">
+    <h3>IntroductionIntroductionIntroductionIntroductionIntroductionIntroduction</h3>
+    <h3>Body</h3>
+    <h3>Conclusion</h3>
+  </div>
+</body>
+</html>
